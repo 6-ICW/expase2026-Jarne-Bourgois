@@ -16,12 +16,23 @@ export default function UserList({ users, registeredUsers }: Props) {
           <li
             key={gbr.id}
             style={
-              registeredUsers.filter((reg) => reg == gbr.naam).toString() == ""
+              Boolean(
+                registeredUsers
+                  .filter((reg) => reg.toLowerCase() == gbr.naam.toLowerCase())
+                  .toString()
+              ) === true
                 ? { color: "green" }
-                : { color: "rood" }
+                : { color: "red" }
             }
           >
-            {gbr.naam}
+            {gbr.naam}{" "}
+            {Boolean(
+              registeredUsers
+                .filter((reg) => reg.toLowerCase() == gbr.naam.toLowerCase())
+                .toString()
+            ) === true
+              ? "(bekende gebruiker)"
+              : "(onbekende gebruiker)"}
           </li>
         ))}
       </ul>
